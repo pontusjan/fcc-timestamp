@@ -1,10 +1,17 @@
-var express = require('express')
-var app = express()
+var express = require('express');
+var app = express();
+var port = process.env.PORT || 3000;
 
-app.get('/', function (req, res) {
-  res.send('Hello World!')
-})
 
-app.listen(3000, function () {
-  console.log('Example app listening on port 3000!')
-})
+app.set('view engine', 'ejs');
+app.use('/assets/', express.static(__dirname + '/public'));
+
+
+app.get('/', function(req, res){
+    res.render('index');
+});
+
+
+app.listen(port, function(){
+    console.log('Express app started, listeing on port ' + port);
+});
